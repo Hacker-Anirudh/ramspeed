@@ -277,6 +277,7 @@ class _MainScaffoldState extends State<MainScaffold> {
                         });
                       } on FormatException {
                         _showErrorDialog(context);
+                        mt = 1; // This prevents a divide-by-zero error
                       }
                       try {
                         String castemp = casController.text;
