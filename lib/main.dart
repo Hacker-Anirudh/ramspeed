@@ -38,19 +38,22 @@ class _MainAppState extends State<MainApp> {
     return MaterialApp(
       title: 'RAMSpeed',
       theme: ThemeData(
+        useMaterial3: true,
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.lightBlueAccent,
+          brightness: isDark ? Brightness.dark : Brightness.light,
+        ),
         brightness: isDark ? Brightness.dark : Brightness.light,
         primaryColor: Colors.blueAccent,
       ),
+
       home: mainScaffold(context),
     );
   }
 
   Scaffold mainScaffold(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('RAMSpeed'),
-        backgroundColor: Colors.blueAccent,
-      ),
+      appBar: AppBar(title: const Text('RAMSpeed')),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(24.0),
