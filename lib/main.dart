@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ramspeed/logic.dart';
 
 void main() {
   runApp(const MainApp());
@@ -17,10 +18,11 @@ class _MainAppState extends State<MainApp> {
   final TextEditingController _buscontroller = TextEditingController();
   final TextEditingController _channelcontroller = TextEditingController();
 
-  double? cas = 0;
-  double? MT = 0;
-  double? bus = 0;
-  double? channels = 0;
+  double cas = 0;
+  double MT = 0;
+  double bus = 0;
+  double channels = 0;
+  String speed = '';
 
   @override
   Widget build(BuildContext context) {
@@ -83,7 +85,7 @@ class _MainAppState extends State<MainApp> {
                 const SizedBox(height: 32),
 
                 const Text(
-                  "To calculate the latency, enter the CL rating (e.g., 30):",
+                  "To calculate the latency, enter the CAS latency (e.g. CL30):",
                   style: TextStyle(fontSize: 16),
                 ),
                 const SizedBox(height: 16),
@@ -94,7 +96,7 @@ class _MainAppState extends State<MainApp> {
                       child: TextField(
                         keyboardType: TextInputType.number,
                         decoration: const InputDecoration(
-                          labelText: "CL rating",
+                          labelText: "CAS latency",
                         ),
                         controller: _CAScontroller,
                       ),
@@ -103,16 +105,22 @@ class _MainAppState extends State<MainApp> {
                   ],
                 ),
                 const SizedBox(height: 16),
-                FloatingActionButton(
+                ElevatedButton(
+                  child: Text("Go!"),
                   onPressed: () {
-                    setState(() {
-                      cas = double.tryParse(_CAScontroller.text);
-                      MT = double.tryParse(_MTcontroller.text);
-                      bus = double.tryParse(_buscontroller.text);
-                      channels = double.tryParse(_channelcontroller.text);
-                    });
+                    try {
+                      setState(() {
+                        cas = double.parse(_CAScontroller.text);
+                        MT = double.parse(_MTcontroller.text);
+                        bus = double.parse(_buscontroller.text);
+                        channels = double.parse(_channelcontroller.text);
+                        speed = Math.toRAMSpeed(MT, bus, channels);
+                      });
+                    } on FormatException {}
                   },
                 ),
+                SizedBox(height: 16),
+                Text(speed),
               ],
             ),
           ),
