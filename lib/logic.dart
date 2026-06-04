@@ -1,7 +1,7 @@
 class Math {
-  static String toRAMSpeed(double MT, double bus, double channels) {
+  static String toRAMSpeed(double mt, double bus, double channels) {
     String speed;
-    double tempval = (MT * bus * channels) / 8;
+    double tempval = (mt * bus * channels) / 8;
     if (tempval < 1000) {
       speed = "$tempval MB/s";
       return speed;
