@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ramspeed/logic.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 void main() {
   runApp(const MainApp());
@@ -209,9 +210,23 @@ class _MainScaffoldState extends State<MainScaffold> {
                 context: context,
                 applicationIcon: Image.asset('assets/appicon.png'),
                 applicationName: 'RAMspeed',
-                applicationVersion: '1.0',
+                applicationVersion: '1.2.0',
                 applicationLegalese:
-                    '(c) 2020-2026 Anirudh Menon. GNU GPL v3 license. All rights reserved.',
+                    '(c) 2020-2026 Anirudh Menon. GNU GPL v3 license. All rights reserved.\nFor feature suggestions/bug reports, open an issue on Github.',
+                children: [
+                  Column(
+                    children: [
+                      InkWell(
+                        child: Text('Link'),
+                        onTap: () => launchUrl(
+                          Uri.parse(
+                            'https://github.com/Hacker-Anirudh/ramspeed/issues',
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
               );
             },
             icon: Icon(Icons.info_rounded),
