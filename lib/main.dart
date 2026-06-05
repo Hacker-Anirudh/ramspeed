@@ -213,25 +213,9 @@ class _MainScaffoldState extends State<MainScaffold> {
                 context: context,
                 applicationIcon: Image.asset('assets/appicon.png'),
                 applicationName: 'RAMspeed',
-                applicationVersion: '1.2.2',
+                applicationVersion: '1.2.3',
                 applicationLegalese:
                     '(c) 2020-2026 Anirudh Menon. GNU GPL v3 license. All rights reserved.\nFor feature suggestions/bug reports, open an issue on Github.',
-                children: [
-                  Link(
-                    uri: githubIssuesUri,
-                    builder: (BuildContext context, FollowLink? followLink) =>
-                        InkWell(
-                          onTap: followLink,
-                          child: const Text(
-                            'Link',
-                            style: TextStyle(
-                              color: Colors.blue,
-                              decoration: TextDecoration.underline,
-                            ),
-                          ),
-                        ),
-                  ),
-                ],
               );
             },
             icon: Icon(Icons.info_rounded),
