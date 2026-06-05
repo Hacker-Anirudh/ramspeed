@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ramspeed/logic.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/link.dart';
 
 void main() {
   runApp(const MainApp());
@@ -213,17 +213,23 @@ class _MainScaffoldState extends State<MainScaffold> {
                 context: context,
                 applicationIcon: Image.asset('assets/appicon.png'),
                 applicationName: 'RAMspeed',
-                applicationVersion: '1.2.1',
+                applicationVersion: '1.2.2',
                 applicationLegalese:
                     '(c) 2020-2026 Anirudh Menon. GNU GPL v3 license. All rights reserved.\nFor feature suggestions/bug reports, open an issue on Github.',
                 children: [
-                  Column(
-                    children: [
-                      InkWell(
-                        child: Text('Link'),
-                        onTap: () => launchUrl(githubIssuesUri),
-                      ),
-                    ],
+                  Link(
+                    uri: githubIssuesUri,
+                    builder: (BuildContext context, FollowLink? followLink) =>
+                        InkWell(
+                          onTap: followLink,
+                          child: const Text(
+                            'Link',
+                            style: TextStyle(
+                              color: Colors.blue,
+                              decoration: TextDecoration.underline,
+                            ),
+                          ),
+                        ),
                   ),
                 ],
               );
