@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:ramspeed/logic.dart';
-import 'package:url_launcher/link.dart';
 
 void main() {
   runApp(const MainApp());
@@ -68,9 +67,6 @@ class _MainScaffoldState extends State<MainScaffold> {
   String speed = '6967 YB/s';
   double latency = 420;
   String latencyStr = '';
-  static final Uri githubIssuesUri = Uri.parse(
-    'https://github.com/Hacker-Anirudh/ramspeed/issues',
-  );
 
   void _showErrorDialog(BuildContext context) {
     showDialog(
