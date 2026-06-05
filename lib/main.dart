@@ -289,7 +289,7 @@ class _MainScaffoldState extends State<MainScaffold> {
                       } on FormatException {
                         cas = 0;
                         latency = 0;
-                        'Total latency: $latency ns';
+                        latencyStr = '';
                       }
                     },
                   ),
