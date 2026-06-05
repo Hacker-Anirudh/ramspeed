@@ -22,7 +22,7 @@ class _MainAppState extends State<MainApp> {
       theme: ThemeData(
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.lightBlueAccent,
+          seedColor: isDark ? Colors.blueAccent : Colors.lightBlueAccent,
           brightness: isDark ? Brightness.dark : Brightness.light,
         ),
       ),
@@ -202,6 +202,21 @@ class _MainScaffoldState extends State<MainScaffold> {
           'RAMSpeed',
           style: TextStyle(fontFamily: 'VT323', fontSize: 32.0),
         ),
+        actions: [
+          IconButton(
+            onPressed: () {
+              showAboutDialog(
+                context: context,
+                applicationIcon: Image.asset('assets/appicon.png'),
+                applicationName: 'RAMspeed',
+                applicationVersion: '1.0',
+                applicationLegalese:
+                    '(c) 2020-2026 Anirudh Menon. GNU GPL v3 license. All rights reserved.',
+              );
+            },
+            icon: Icon(Icons.info_rounded),
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         child: Padding(
