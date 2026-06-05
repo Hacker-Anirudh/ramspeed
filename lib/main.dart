@@ -66,6 +66,7 @@ class _MainScaffoldState extends State<MainScaffold> {
   double channels = 0;
   String speed = '6967 YB/s';
   double latency = 420;
+  String latencyStr = '';
 
   void _showErrorDialog(BuildContext context) {
     showDialog(
@@ -284,9 +285,11 @@ class _MainScaffoldState extends State<MainScaffold> {
                         castemp = castemp.replaceAll(RegExp(r'[^0-9]'), '');
                         cas = double.parse(castemp);
                         latency = cas * (2000 / mt);
+                        latencyStr = 'Total latency: $latency ns';
                       } on FormatException {
                         cas = 0;
                         latency = 0;
+                        'Total latency: $latency ns';
                       }
                     },
                   ),
@@ -314,7 +317,7 @@ class _MainScaffoldState extends State<MainScaffold> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "Total latency: $latency ns",
+                    latencyStr,
                     style: TextStyle(fontFamily: 'VT323', fontSize: 32),
                   ),
                 ],
