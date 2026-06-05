@@ -68,6 +68,9 @@ class _MainScaffoldState extends State<MainScaffold> {
   String speed = '6967 YB/s';
   double latency = 420;
   String latencyStr = '';
+  static final Uri githubIssuesUri = Uri.parse(
+    'https://github.com/Hacker-Anirudh/ramspeed/issues',
+  );
 
   void _showErrorDialog(BuildContext context) {
     showDialog(
@@ -210,7 +213,7 @@ class _MainScaffoldState extends State<MainScaffold> {
                 context: context,
                 applicationIcon: Image.asset('assets/appicon.png'),
                 applicationName: 'RAMspeed',
-                applicationVersion: '1.2.0',
+                applicationVersion: '1.2.1',
                 applicationLegalese:
                     '(c) 2020-2026 Anirudh Menon. GNU GPL v3 license. All rights reserved.\nFor feature suggestions/bug reports, open an issue on Github.',
                 children: [
@@ -218,11 +221,7 @@ class _MainScaffoldState extends State<MainScaffold> {
                     children: [
                       InkWell(
                         child: Text('Link'),
-                        onTap: () => launchUrl(
-                          Uri.parse(
-                            'https://github.com/Hacker-Anirudh/ramspeed/issues',
-                          ),
-                        ),
+                        onTap: () => launchUrl(githubIssuesUri),
                       ),
                     ],
                   ),
