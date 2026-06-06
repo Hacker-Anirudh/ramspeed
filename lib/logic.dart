@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
 class Math {
-  static String toRAMSpeed(
+  static Future<String> toRAMSpeed(
     String mt,
     String bus,
     String channels,
     BuildContext context,
-  ) {
+  ) async {
     double mttemp = 0;
     double bustemp = 0;
     double channelstemp = 0;
@@ -15,36 +15,35 @@ class Math {
       bustemp = double.parse(bus);
       channelstemp = double.parse(channels);
     } on FormatException {
-      Dialogs.showErrorDialog(context);
+      await Dialogs.showErrorDialog(
+        context,
+        'Make sure your inputs are valid.',
+      );
     }
-    String speed;
-    double tempval = (mttemp * bustemp * channelstemp) / 8;
+    final tempval = (mttemp * bustemp * channelstemp) / 8;
     if (tempval < 1000) {
-      speed = "$tempval MB/s";
-      return speed;
+      return '$tempval MB/s';
     } else if (tempval < 1000000) {
-      double rval = tempval / 1000;
-      speed = "$rval GB/s";
-      return speed;
+      final rval = tempval / 1000;
+      return '$rval GB/s';
     } else {
-      double rval = tempval / 1000000;
-      speed = "$rval TB/s";
-      return speed;
+      final rval = tempval / 1000000;
+      return '$rval TB/s';
     }
   }
 
   static String toLatencyStr(String casinput, String mtinput) {
-    final String castemp = casinput.replaceAll(RegExp(r'[^0-9]'), '');
+    final castemp = casinput.replaceAll(RegExp('[^0-9]'), '');
 
-    final double? mt = double.tryParse(mtinput);
-    final double? cas = double.tryParse(castemp);
+    final mt = double.tryParse(mtinput);
+    final cas = double.tryParse(castemp);
 
     if (mt == null || cas == null || mt <= 0) {
       return '';
     }
 
     try {
-      final double latency = cas * (2000 / mt);
+      final latency = cas * (2000 / mt);
       return 'Total latency: ${latency.toStringAsFixed(2)} ns';
     } on FormatException {
       return '';
@@ -53,14 +52,14 @@ class Math {
 }
 
 class Dialogs {
-  static void showHintsDialog(BuildContext context) {
-    showModalBottomSheet(
+  static Future<void> showHintsDialog(BuildContext context) async {
+    await showModalBottomSheet<void>(
       context: context,
       isScrollControlled: true,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
-      builder: (BuildContext ctx) {
+      builder: (ctx) {
         final cs = Theme.of(ctx).colorScheme;
 
         return Padding(
@@ -109,7 +108,8 @@ class Dialogs {
                         style: TextStyle(fontWeight: FontWeight.w600),
                       ),
                       subtitle: const Text(
-                        'Typically 64-bit for PCs, 16-bit for smartphones and derivatives (for example Apple M-series silicon).',
+                        'Typically 64-bit for PCs, 16-bit for smartphones '
+                        'and derivatives (for example Apple M-series silicon).',
                       ),
                     ),
                     const Divider(height: 16),
@@ -122,7 +122,8 @@ class Dialogs {
                         style: TextStyle(fontWeight: FontWeight.w600),
                       ),
                       subtitle: const Text(
-                        'Can usually be found online. (Or on a PC, check hardware info software.)',
+                        'Can usually be found online. '
+                        '(Or on a PC, check hardware info software.)',
                       ),
                     ),
                     const Divider(height: 16),
@@ -135,7 +136,8 @@ class Dialogs {
                         style: TextStyle(fontWeight: FontWeight.w600),
                       ),
                       subtitle: const Text(
-                        'Also usually a prominent specification on PC RAM kits, but is almost never found in specs of other devices.',
+                        'Also usually a prominent specification on PC RAM, '
+                        'but is very rarely found in specs of other devices.',
                       ),
                     ),
                   ],
@@ -159,16 +161,19 @@ class Dialogs {
     );
   }
 
-  static void showErrorDialog(BuildContext context) {
-    showDialog(
+  static Future<void> showErrorDialog(
+    BuildContext context,
+    String message,
+  ) async {
+    await showDialog<void>(
       context: context,
-      builder: (BuildContext dialogContext) {
+      builder: (dialogContext) {
         return AlertDialog(
-          title: const Text("Error"),
-          content: const Text("Make sure your inputs are valid."),
+          title: const Text('Error'),
+          content: Text(message),
           actions: [
             TextButton(
-              child: const Text("OK"),
+              child: const Text('OK'),
               onPressed: () {
                 Navigator.pop(dialogContext);
               },

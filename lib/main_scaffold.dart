@@ -2,14 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:ramspeed/logic.dart';
 
 class MainScaffold extends StatefulWidget {
-  final bool isDark;
-  final VoidCallback onThemeToggle;
-
   const MainScaffold({
-    super.key,
     required this.isDark,
     required this.onThemeToggle,
+    super.key,
   });
+  final bool isDark;
+  final VoidCallback onThemeToggle;
 
   @override
   State<MainScaffold> createState() => _MainScaffoldState();
@@ -32,27 +31,7 @@ class _MainScaffoldState extends State<MainScaffold> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'RAMSpeed',
-          style: TextStyle(fontFamily: 'VT323', fontSize: 32.0),
-        ),
-        actions: [
-          IconButton(
-            onPressed: () {
-              showAboutDialog(
-                context: context,
-                applicationIcon: Image.asset('assets/appicon.png'),
-                applicationName: 'RAMspeed',
-                applicationVersion: '1.2.4',
-                applicationLegalese:
-                    '(c) 2020-2026 Anirudh Menon. GNU GPL v3 license. All rights reserved.\nFor feature suggestions/bug reports, open an issue on Github.',
-              );
-            },
-            icon: Icon(Icons.info_rounded),
-          ),
-        ],
-      ),
+      appBar: mainAppBar(context),
       body: mainBody(context),
       floatingActionButton: FloatingActionButton(
         onPressed: widget.onThemeToggle,
@@ -63,15 +42,39 @@ class _MainScaffoldState extends State<MainScaffold> {
     );
   }
 
+  AppBar mainAppBar(BuildContext context) {
+    return AppBar(
+      title: const Text(
+        'RAMSpeed',
+        style: TextStyle(fontFamily: 'VT323', fontSize: 32),
+      ),
+      actions: [
+        IconButton(
+          onPressed: () {
+            showAboutDialog(
+              context: context,
+              applicationIcon: Image.asset('assets/appicon.png'),
+              applicationName: 'RAMspeed',
+              applicationVersion: '1.2.5',
+              applicationLegalese:
+                  '(c) 2020-2026 Anirudh Menon. GNU GPL v3 license. All rights reserved.\nFor feature suggestions/bug reports, open an issue on Github.',
+            );
+          },
+          icon: const Icon(Icons.info_rounded),
+        ),
+      ],
+    );
+  }
+
   SingleChildScrollView mainBody(BuildContext context) {
     return SingleChildScrollView(
       child: Padding(
-        padding: const EdgeInsets.all(24.0),
+        padding: const EdgeInsets.all(24),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text(
-              "Enter the following data:",
+              'Enter the following data:',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 16),
@@ -81,7 +84,7 @@ class _MainScaffoldState extends State<MainScaffold> {
                   child: TextField(
                     keyboardType: TextInputType.number,
                     decoration: const InputDecoration(
-                      labelText: "Speed (MT/s)",
+                      labelText: 'Speed (MT/s)',
                     ),
                     controller: mtController,
                   ),
@@ -90,7 +93,7 @@ class _MainScaffoldState extends State<MainScaffold> {
                 Expanded(
                   child: TextField(
                     keyboardType: TextInputType.number,
-                    decoration: const InputDecoration(labelText: "Bus width"),
+                    decoration: const InputDecoration(labelText: 'Bus width'),
                     controller: busController,
                   ),
                 ),
@@ -98,7 +101,7 @@ class _MainScaffoldState extends State<MainScaffold> {
                 Expanded(
                   child: TextField(
                     keyboardType: TextInputType.number,
-                    decoration: const InputDecoration(labelText: "Channels"),
+                    decoration: const InputDecoration(labelText: 'Channels'),
                     controller: channelController,
                   ),
                 ),
@@ -106,7 +109,7 @@ class _MainScaffoldState extends State<MainScaffold> {
             ),
             const SizedBox(height: 32),
             const Text(
-              "To calculate the latency, enter the CAS latency (e.g. CL30):",
+              'To calculate the latency, enter the CAS latency (e.g. CL30):',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 16),
@@ -115,7 +118,7 @@ class _MainScaffoldState extends State<MainScaffold> {
                 Expanded(
                   child: TextField(
                     keyboardType: TextInputType.number,
-                    decoration: const InputDecoration(labelText: "CAS latency"),
+                    decoration: const InputDecoration(labelText: 'CAS latency'),
                     controller: casController,
                   ),
                 ),
@@ -126,10 +129,10 @@ class _MainScaffoldState extends State<MainScaffold> {
             Row(
               children: [
                 ElevatedButton(
-                  child: const Text("Go!"),
+                  child: const Text('Go!'),
                   onPressed: () {
-                    setState(() {
-                      speed = Math.toRAMSpeed(
+                    setState(() async {
+                      speed = await Math.toRAMSpeed(
                         mtController.text,
                         busController.text,
                         channelController.text,
@@ -144,12 +147,12 @@ class _MainScaffoldState extends State<MainScaffold> {
                     });
                   },
                 ),
-                Expanded(flex: 2, child: SizedBox()),
+                const Expanded(flex: 2, child: SizedBox()),
                 ElevatedButton(
-                  onPressed: () {
-                    Dialogs.showHintsDialog(context);
+                  onPressed: () async {
+                    await Dialogs.showHintsDialog(context);
                   },
-                  child: Icon(Icons.info_outline_rounded),
+                  child: const Icon(Icons.info_outline_rounded),
                 ),
               ],
             ),
@@ -158,8 +161,8 @@ class _MainScaffoldState extends State<MainScaffold> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "Speed: $speed",
-                  style: TextStyle(fontFamily: 'VT323', fontSize: 32),
+                  'Speed: $speed',
+                  style: const TextStyle(fontFamily: 'VT323', fontSize: 32),
                 ),
               ],
             ),
@@ -169,7 +172,7 @@ class _MainScaffoldState extends State<MainScaffold> {
               children: [
                 Text(
                   latencyStr,
-                  style: TextStyle(fontFamily: 'VT323', fontSize: 32),
+                  style: const TextStyle(fontFamily: 'VT323', fontSize: 32),
                 ),
               ],
             ),
