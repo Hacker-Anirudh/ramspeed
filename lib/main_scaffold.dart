@@ -130,21 +130,26 @@ class _MainScaffoldState extends State<MainScaffold> {
               children: [
                 ElevatedButton(
                   child: const Text('Go!'),
-                  onPressed: () {
-                    setState(() async {
-                      speed = await Math.toRAMSpeed(
-                        mtController.text,
-                        busController.text,
-                        channelController.text,
+                  onPressed: () async {
+                    final result = Math.toRAMSpeed(
+                      mtController.text,
+                      busController.text,
+                      channelController.text,
+                    );
+                    if (result == null) {
+                      await Dialogs.showErrorDialog(
                         context,
+                        'Make sure your inputs are valid.',
                       );
-                    });
-                    setState(() {
-                      latencyStr = Math.toLatencyStr(
-                        casController.text,
-                        mtController.text,
-                      );
-                    });
+                    } else {
+                      setState(() {
+                        latencyStr = Math.toLatencyStr(
+                          casController.text,
+                          mtController.text,
+                        );
+                        speed = result;
+                      });
+                    }
                   },
                 ),
                 const Expanded(flex: 2, child: SizedBox()),

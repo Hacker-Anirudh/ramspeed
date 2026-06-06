@@ -1,25 +1,15 @@
 import 'package:flutter/material.dart';
 
 class Math {
-  static Future<String> toRAMSpeed(
+  static String? toRAMSpeed(
     String mt,
     String bus,
     String channels,
-    BuildContext context,
-  ) async {
-    double mttemp = 0;
-    double bustemp = 0;
-    double channelstemp = 0;
-    try {
-      mttemp = double.parse(mt);
-      bustemp = double.parse(bus);
-      channelstemp = double.parse(channels);
-    } on FormatException {
-      await Dialogs.showErrorDialog(
-        context,
-        'Make sure your inputs are valid.',
-      );
-    }
+  ) {
+    final mttemp = double.tryParse(mt);
+    final bustemp = double.tryParse(bus);
+    final channelstemp = double.tryParse(channels);
+    if (mttemp == null || bustemp == null || channelstemp == null) return null;
     final tempval = (mttemp * bustemp * channelstemp) / 8;
     if (tempval < 1000) {
       return '$tempval MB/s';
@@ -40,13 +30,9 @@ class Math {
 
     if (mt == null || cas == null || mt <= 0) {
       return '';
-    }
-
-    try {
+    } else {
       final latency = cas * (2000 / mt);
       return 'Total latency: ${latency.toStringAsFixed(2)} ns';
-    } on FormatException {
-      return '';
     }
   }
 }
