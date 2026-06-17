@@ -17,18 +17,10 @@ class MainScaffold extends StatefulWidget {
 }
 
 class _MainScaffoldState extends State<MainScaffold> {
-  final TextEditingController casController = TextEditingController(
-    text: BodyStrings.casDecoration,
-  );
-  final TextEditingController mtController = TextEditingController(
-    text: BodyStrings.speed,
-  );
-  final TextEditingController busController = TextEditingController(
-    text: BodyStrings.busWidth,
-  );
-  final TextEditingController channelController = TextEditingController(
-    text: BodyStrings.channels,
-  );
+  final TextEditingController casController = TextEditingController();
+  final TextEditingController mtController = TextEditingController();
+  final TextEditingController busController = TextEditingController();
+  final TextEditingController channelController = TextEditingController();
 
   double cas = 0;
   double mt = 0;
@@ -98,6 +90,7 @@ class _MainScaffoldState extends State<MainScaffold> {
               child: CupertinoTextField(
                 keyboardType: TextInputType.number,
                 controller: mtController,
+                placeholder: BodyStrings.speed,
               ),
             ),
             const SizedBox(width: 12),
@@ -105,6 +98,7 @@ class _MainScaffoldState extends State<MainScaffold> {
               child: CupertinoTextField(
                 keyboardType: TextInputType.number,
                 controller: busController,
+                placeholder: BodyStrings.busWidth,
               ),
             ),
             const SizedBox(width: 12),
@@ -112,6 +106,7 @@ class _MainScaffoldState extends State<MainScaffold> {
               child: CupertinoTextField(
                 keyboardType: TextInputType.number,
                 controller: channelController,
+                placeholder: BodyStrings.channels,
               ),
             ),
           ],
@@ -128,6 +123,7 @@ class _MainScaffoldState extends State<MainScaffold> {
               child: CupertinoTextField(
                 keyboardType: TextInputType.number,
                 controller: casController,
+                placeholder: BodyStrings.casDecoration,
               ),
             ),
             const Expanded(flex: 2, child: SizedBox()),
