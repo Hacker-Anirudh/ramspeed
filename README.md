@@ -18,13 +18,13 @@ Choose whether to build Material (Google) or Cupertino (Apple) style:
 
 Cupertino
 
-    flutter build [plaform] -t lib/main_cupertino.dart --release
+    flutter build [platform] -t lib/main_cupertino.dart --release
 
 ---
 
 Material
 
-    flutter build [plaform] -t lib/main_material.dart --release
+    flutter build [platform] -t lib/main_material.dart --release
 
 ---
 
