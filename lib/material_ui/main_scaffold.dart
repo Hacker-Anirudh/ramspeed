@@ -31,6 +31,15 @@ class _MainScaffoldState extends State<MainScaffold> {
   String latencyStr = '';
 
   @override
+  void dispose() {
+    casController.dispose();
+    mtController.dispose();
+    busController.dispose();
+    channelController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: mainAppBar(context),
