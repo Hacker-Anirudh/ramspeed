@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:ramspeed/material_ui/dialogs.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:ramspeed/cupertino_ui/dialogs.dart';
 import 'package:ramspeed/shared/logic.dart';
 import 'package:ramspeed/shared/strings.dart';
 
@@ -17,10 +17,18 @@ class MainScaffold extends StatefulWidget {
 }
 
 class _MainScaffoldState extends State<MainScaffold> {
-  final TextEditingController casController = TextEditingController();
-  final TextEditingController mtController = TextEditingController();
-  final TextEditingController busController = TextEditingController();
-  final TextEditingController channelController = TextEditingController();
+  final TextEditingController casController = TextEditingController(
+    text: BodyStrings.casDecoration,
+  );
+  final TextEditingController mtController = TextEditingController(
+    text: BodyStrings.speed,
+  );
+  final TextEditingController busController = TextEditingController(
+    text: BodyStrings.busWidth,
+  );
+  final TextEditingController channelController = TextEditingController(
+    text: BodyStrings.channels,
+  );
 
   double cas = 0;
   double mt = 0;
@@ -41,38 +49,21 @@ class _MainScaffoldState extends State<MainScaffold> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: mainAppBar(context),
-      body: mainBody(context),
-      floatingActionButton: FloatingActionButton(
-        onPressed: widget.onThemeToggle,
-        child: Icon(
-          widget.isDark ? Icons.brightness_2_outlined : Icons.wb_sunny_outlined,
-        ),
-      ),
+    return CupertinoPageScaffold(
+      navigationBar: mainAppBar(context),
+      child: mainBody(context),
     );
   }
 
-  AppBar mainAppBar(BuildContext context) {
-    return AppBar(
-      title: const Text(
-        Strings.appName,
-        style: TextStyle(fontFamily: 'VT323', fontSize: 32),
-      ),
-      actions: [
-        IconButton(
-          onPressed: () {
-            showAboutDialog(
-              context: context,
-              applicationIcon: Image.asset('assets/appicon.png'),
-              applicationName: Strings.appName,
-              applicationVersion: Strings.appVersion,
-              applicationLegalese: Strings.legalese,
-            );
-          },
-          icon: const Icon(Icons.info_rounded),
+  CupertinoNavigationBar mainAppBar(BuildContext context) {
+    return CupertinoNavigationBar(
+      middle: const Text(Strings.appName),
+      trailing: CupertinoButton(
+        onPressed: widget.onThemeToggle,
+        child: Icon(
+          widget.isDark ? CupertinoIcons.brightness : CupertinoIcons.sun_max,
         ),
-      ],
+      ),
     );
   }
 
@@ -89,6 +80,7 @@ class _MainScaffoldState extends State<MainScaffold> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        const SizedBox(height: 32),
         const Text(
           BodyStrings.dataEntry,
           style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
@@ -97,31 +89,22 @@ class _MainScaffoldState extends State<MainScaffold> {
         Row(
           children: [
             Expanded(
-              child: TextField(
+              child: CupertinoTextField(
                 keyboardType: TextInputType.number,
-                decoration: const InputDecoration(
-                  labelText: BodyStrings.speed,
-                ),
                 controller: mtController,
               ),
             ),
             const SizedBox(width: 12),
             Expanded(
-              child: TextField(
+              child: CupertinoTextField(
                 keyboardType: TextInputType.number,
-                decoration: const InputDecoration(
-                  labelText: BodyStrings.busWidth,
-                ),
                 controller: busController,
               ),
             ),
             const SizedBox(width: 12),
             Expanded(
-              child: TextField(
+              child: CupertinoTextField(
                 keyboardType: TextInputType.number,
-                decoration: const InputDecoration(
-                  labelText: BodyStrings.channels,
-                ),
                 controller: channelController,
               ),
             ),
@@ -136,11 +119,8 @@ class _MainScaffoldState extends State<MainScaffold> {
         Row(
           children: [
             Expanded(
-              child: TextField(
+              child: CupertinoTextField(
                 keyboardType: TextInputType.number,
-                decoration: const InputDecoration(
-                  labelText: BodyStrings.casDecoration,
-                ),
                 controller: casController,
               ),
             ),
@@ -150,7 +130,7 @@ class _MainScaffoldState extends State<MainScaffold> {
         const SizedBox(height: 16),
         Row(
           children: [
-            ElevatedButton(
+            CupertinoButton(
               child: const Text(BodyStrings.go),
               onPressed: () async {
                 final String lStr;
@@ -180,11 +160,11 @@ class _MainScaffoldState extends State<MainScaffold> {
               },
             ),
             const Expanded(flex: 2, child: SizedBox()),
-            ElevatedButton(
+            CupertinoButton(
               onPressed: () async {
                 await Dialogs.showHintsDialog(context);
               },
-              child: const Icon(Icons.info_outline_rounded),
+              child: const Icon(CupertinoIcons.info_circle),
             ),
           ],
         ),

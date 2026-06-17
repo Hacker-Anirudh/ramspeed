@@ -15,7 +15,6 @@ class BodyStrings {
       'To calculate the latency, enter the CAS latency (e.g. CL30):';
   static const String casDecoration = 'CAS latency';
   static const String go = 'Go!';
-  static const String invalidInput = 'Make sure your inputs are valid.';
 }
 
 class DialogStrings {
@@ -38,4 +37,5 @@ class DialogStrings {
   static const String gotit = 'Got it';
   static const String error = 'Error';
   static const String ok = 'OK';
+  static const String invalidInput = 'Make sure your inputs are valid.';
 }

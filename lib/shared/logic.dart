@@ -1,5 +1,5 @@
-class Math {
-  static String? toRAMSpeed(
+class Logic {
+  static String? _toRAMSpeed(
     String mt,
     String bus,
     String channels,
@@ -10,17 +10,17 @@ class Math {
     if (mttemp == null || bustemp == null || channelstemp == null) return null;
     final tempval = (mttemp * bustemp * channelstemp) / 8;
     if (tempval < 1000) {
-      return '$tempval MB/s';
+      return 'Speed: $tempval MB/s';
     } else if (tempval < 1000000) {
       final rval = tempval / 1000;
-      return '$rval GB/s';
+      return 'Speed: $rval GB/s';
     } else {
       final rval = tempval / 1000000;
-      return '$rval TB/s';
+      return 'Speed: $rval TB/s';
     }
   }
 
-  static String toLatencyStr(String casinput, String mtinput) {
+  static String _toLatencyStr(String casinput, String mtinput) {
     final castemp = casinput.replaceAll(RegExp('[^0-9]'), '');
 
     final mt = double.tryParse(mtinput);
@@ -32,5 +32,23 @@ class Math {
       final latency = cas * (2000 / mt);
       return 'Total latency: ${latency.toStringAsFixed(2)} ns';
     }
+  }
+
+  static Future<(String, String?)> onGo(
+    String mtController,
+    String busController,
+    String channelController,
+    String casController,
+  ) async {
+    final result = _toRAMSpeed(
+      mtController,
+      busController,
+      channelController,
+    );
+    final latencyStr = _toLatencyStr(
+      casController,
+      mtController,
+    );
+    return (latencyStr, result);
   }
 }
