@@ -133,4 +133,42 @@ class Dialogs {
       },
     );
   }
+
+  static Future<void> showAboutDialog(BuildContext context) async {
+    await showCupertinoDialog<void>(
+      context: context,
+      builder: (context) => CupertinoAlertDialog(
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SizedBox(
+              width: 40,
+              height: 40,
+              child: Image.asset('assets/appicon.png'),
+            ),
+            const SizedBox(width: 10),
+            const Text('RAMspeed'),
+          ],
+        ),
+        content: const Padding(
+          padding: EdgeInsets.only(top: 8),
+          child: Text(
+            'Version ${Strings.appVersion}\n\n'
+            // Not worth fixing.
+            // ignore: lines_longer_than_80_chars
+            '© 2020-2026 Anirudh Menon. GNU GPL v3 license. All rights reserved.\n'
+            'For feature suggestions/bug reports, open an issue on GitHub.',
+            style: TextStyle(fontSize: 13),
+          ),
+        ),
+        actions: <CupertinoDialogAction>[
+          CupertinoDialogAction(
+            isDefaultAction: true,
+            onPressed: () => Navigator.pop(context),
+            child: const Text('Close'),
+          ),
+        ],
+      ),
+    );
+  }
 }

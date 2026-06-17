@@ -58,11 +58,17 @@ class _MainScaffoldState extends State<MainScaffold> {
   CupertinoNavigationBar mainAppBar(BuildContext context) {
     return CupertinoNavigationBar(
       middle: const Text(Strings.appName),
-      trailing: CupertinoButton(
+      leading: CupertinoButton(
         onPressed: widget.onThemeToggle,
         child: Icon(
           widget.isDark ? CupertinoIcons.brightness : CupertinoIcons.sun_max,
         ),
+      ),
+      trailing: CupertinoButton(
+        onPressed: () async {
+          await Dialogs.showAboutDialog(context);
+        },
+        child: const Icon(CupertinoIcons.info),
       ),
     );
   }
