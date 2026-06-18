@@ -10,13 +10,14 @@ class RamSpeedLogic {
     if (mttemp == null || bustemp == null || channelstemp == null) return null;
     final tempval = (mttemp * bustemp * channelstemp) / 8;
     if (tempval < 1000) {
-      return 'Speed: $tempval MB/s';
+      final tempvalString = tempval.toStringAsFixed(2);
+      return 'Speed: $tempvalString MB/s';
     } else if (tempval < 1000000) {
-      final rval = tempval / 1000;
-      return 'Speed: $rval GB/s';
+      final rvalString = (tempval / 1000).toStringAsFixed(2);
+      return 'Speed: $rvalString GB/s';
     } else {
-      final rval = tempval / 1000000;
-      return 'Speed: $rval TB/s';
+      final rvalString = (tempval / 1000000).toStringAsFixed(2);
+      return 'Speed: $rvalString TB/s';
     }
   }
 
@@ -53,7 +54,7 @@ class RamSpeedLogic {
   }
 }
 
-class PCIeSpeecLogic {
+class PCIeSpeedLogic {
   // Speeds are from Wikipedia, may or may not be 100% accurate
   static final Map<int, double> _busSpeedbyGen = {
     1: 0.25,
@@ -68,7 +69,7 @@ class PCIeSpeecLogic {
   static String toSpeedStr(int? gen, int? lanes) {
     final speed = _busSpeedbyGen[gen];
     if (speed == null || lanes == null) return '';
-    final totalSpeed = (speed * lanes) as String;
+    final totalSpeed = (speed * lanes).toStringAsFixed(2);
     final string = '$totalSpeed GB/s';
     return string;
   }
