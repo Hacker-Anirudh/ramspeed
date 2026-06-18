@@ -137,7 +137,7 @@ class _MainScaffoldState extends State<MainScaffold> {
               onPressed: () async {
                 final String lStr;
                 final String? spee;
-                (lStr, spee) = await Logic.onGo(
+                (lStr, spee) = await RamSpeedLogic.onGo(
                   mtController.text,
                   busController.text,
                   channelController.text,

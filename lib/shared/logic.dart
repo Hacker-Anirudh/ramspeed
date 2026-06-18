@@ -1,4 +1,4 @@
-class Logic {
+class RamSpeedLogic {
   static String? _toRAMSpeed(
     String mt,
     String bus,
@@ -50,5 +50,26 @@ class Logic {
       mtController,
     );
     return (latencyStr, result);
+  }
+}
+
+class PCIeSpeecLogic {
+  // Speeds are from Wikipedia, may or may not be 100% accurate
+  static final Map<int, double> _busSpeedbyGen = {
+    1: 0.25,
+    2: 0.5,
+    3: 0.985,
+    4: 1.969,
+    5: 3.938,
+    6: 7.563,
+    7: 15.125,
+  };
+
+  static String toSpeedStr(int? gen, int? lanes) {
+    final speed = _busSpeedbyGen[gen];
+    if (speed == null || lanes == null) return '';
+    final totalSpeed = (speed * lanes) as String;
+    final string = '$totalSpeed GB/s';
+    return string;
   }
 }
