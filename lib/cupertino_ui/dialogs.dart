@@ -11,8 +11,11 @@ class Dialogs {
         return SafeArea(
           top: false,
           child: Container(
-            decoration: const BoxDecoration(
-              borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+            decoration: BoxDecoration(
+              color: CupertinoColors.systemBackground.resolveFrom(ctx),
+              borderRadius: const BorderRadius.vertical(
+                top: Radius.circular(20),
+              ),
             ),
             child: Padding(
               padding: const EdgeInsets.fromLTRB(24, 24, 24, 32),
@@ -34,39 +37,42 @@ class Dialogs {
                     ],
                   ),
                   const SizedBox(height: 16),
-                  Flexible(
-                    child: ListView(
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      children: [
-                        _hintRow(
-                          ctx,
-                          CupertinoIcons.speedometer,
-                          DialogStrings.mt,
-                          DialogStrings.mtExplanation,
-                        ),
-                        const SizedBox(height: 16),
-                        _hintRow(
-                          ctx,
-                          CupertinoIcons.list_bullet,
-                          DialogStrings.bus,
-                          DialogStrings.busExplanation,
-                        ),
-                        const SizedBox(height: 16),
-                        _hintRow(
-                          ctx,
-                          CupertinoIcons.square_list,
-                          DialogStrings.channels,
-                          DialogStrings.channelsExplanation,
-                        ),
-                        const SizedBox(height: 16),
-                        _hintRow(
-                          ctx,
-                          CupertinoIcons.timer,
-                          DialogStrings.cas,
-                          DialogStrings.casExplanation,
-                        ),
-                      ],
+                  ConstrainedBox(
+                    constraints: BoxConstraints(
+                      maxHeight: MediaQuery.of(ctx).size.height * 0.5,
+                    ),
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          _hintRow(
+                            ctx,
+                            CupertinoIcons.speedometer,
+                            DialogStrings.mt,
+                            DialogStrings.mtExplanation,
+                          ),
+                          const SizedBox(height: 16),
+                          _hintRow(
+                            ctx,
+                            CupertinoIcons.list_bullet,
+                            DialogStrings.bus,
+                            DialogStrings.busExplanation,
+                          ),
+                          const SizedBox(height: 16),
+                          _hintRow(
+                            ctx,
+                            CupertinoIcons.square_list,
+                            DialogStrings.channels,
+                            DialogStrings.channelsExplanation,
+                          ),
+                          const SizedBox(height: 16),
+                          _hintRow(
+                            ctx,
+                            CupertinoIcons.timer,
+                            DialogStrings.cas,
+                            DialogStrings.casExplanation,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                   const SizedBox(height: 24),
