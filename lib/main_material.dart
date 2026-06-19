@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ramspeed/material_ui/main_scaffold.dart';
+import 'package:ramspeed/material_ui/scaffold.dart';
 
 void main() {
   runApp(const MainApp());

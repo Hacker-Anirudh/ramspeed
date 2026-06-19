@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:ramspeed/cupertino_ui/main_scaffold.dart';
+import 'package:ramspeed/cupertino_ui/scaffold.dart';
 
 void main() {
   runApp(const MainApp());
