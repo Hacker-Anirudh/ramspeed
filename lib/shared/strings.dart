@@ -2,7 +2,7 @@ class Strings {
   static const String appName = 'RAMSpeed';
   static const String legalese =
       '(c) 2020-2026 Anirudh Menon. GNU GPL v3 license. All rights reserved.\nFor feature suggestions/bug reports, open an issue on Github.';
-  static const String appVersion = '1.2.7';
+  static const String appVersion = '1.3.0';
   static const String memeSpeed = 'Speed: 6967 YB/s';
 }
 
@@ -38,4 +38,14 @@ class DialogStrings {
   static const String error = 'Error';
   static const String ok = 'OK';
   static const String invalidInput = 'Make sure your inputs are valid.';
+}
+
+class PCIeStrings {
+  static const String gen = 'PCI Express generation';
+  static const String lanes = 'Lanes';
+  static const String computedSpeed = 'Speed:';
+  static const String selGen = 'Select PCIe generation';
+  static const String selLanes = 'Select number of lanes';
+  static const String sel = 'Select';
+  static const String done = 'Done';
 }

@@ -94,12 +94,12 @@ class _MainScaffoldState extends State<MainScaffold> {
         groupValue: _selectedIndex,
         children: const {
           0: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 8),
+            padding: .symmetric(horizontal: 8),
             child: Text('RAM'),
           ),
           1: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 8),
-            child: Text('About'),
+            padding: .symmetric(horizontal: 8),
+            child: Text('PCIe'),
           ),
         },
         onValueChanged: (v) {

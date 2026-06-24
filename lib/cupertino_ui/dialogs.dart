@@ -18,10 +18,10 @@ class Dialogs {
               ),
             ),
             child: Padding(
-              padding: const EdgeInsets.fromLTRB(24, 24, 24, 32),
+              padding: const .fromLTRB(24, 24, 24, 32),
               child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: .min,
+                crossAxisAlignment: .start,
                 children: [
                   Row(
                     children: [
@@ -80,7 +80,7 @@ class Dialogs {
                     width: double.infinity,
                     child: CupertinoButton.filled(
                       onPressed: () => Navigator.pop(ctx),
-                      padding: const EdgeInsets.symmetric(vertical: 16),
+                      padding: const .symmetric(vertical: 16),
                       child: const Text(DialogStrings.gotit),
                     ),
                   ),
@@ -101,13 +101,13 @@ class Dialogs {
   ) {
     final color = CupertinoTheme.of(ctx).primaryColor;
     return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: .start,
       children: [
         Icon(icon, color: color),
         const SizedBox(width: 12),
         Expanded(
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: .start,
             children: [
               Text(title, style: const TextStyle(fontWeight: FontWeight.w600)),
               const SizedBox(height: 4),
@@ -145,7 +145,7 @@ class Dialogs {
       context: context,
       builder: (context) => CupertinoAlertDialog(
         title: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: .center,
           children: [
             SizedBox(
               width: 40,
@@ -157,7 +157,7 @@ class Dialogs {
           ],
         ),
         content: const Padding(
-          padding: EdgeInsets.only(top: 8),
+          padding: .only(top: 8),
           child: Text(
             'Version ${Strings.appVersion}\n\n'
             // Not worth fixing.

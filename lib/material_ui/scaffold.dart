@@ -50,6 +50,7 @@ class _MainScaffoldState extends State<MainScaffold> {
     return Scaffold(
       appBar: mainAppBar(context),
       body: Row(
+        crossAxisAlignment: .start,
         children: [
           NavigationRail(
             selectedIndex: _selectedIndex,

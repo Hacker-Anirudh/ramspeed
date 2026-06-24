@@ -13,10 +13,10 @@ class Dialogs {
         final cs = Theme.of(ctx).colorScheme;
 
         return Padding(
-          padding: const EdgeInsets.fromLTRB(24, 24, 24, 32),
+          padding: const .fromLTRB(24, 24, 24, 32),
           child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: .min,
+            crossAxisAlignment: .start,
             children: [
               Row(
                 children: [
@@ -38,7 +38,7 @@ class Dialogs {
                   children: [
                     ListTile(
                       horizontalTitleGap: 12,
-                      contentPadding: EdgeInsets.zero,
+                      contentPadding: .zero,
                       leading: Icon(Icons.speed_rounded, color: cs.secondary),
                       title: const Text(
                         DialogStrings.mt,
@@ -51,7 +51,7 @@ class Dialogs {
                     const Divider(height: 16),
                     ListTile(
                       horizontalTitleGap: 12,
-                      contentPadding: EdgeInsets.zero,
+                      contentPadding: .zero,
                       leading: Icon(Icons.reorder_rounded, color: cs.secondary),
                       title: const Text(
                         DialogStrings.bus,
@@ -64,7 +64,7 @@ class Dialogs {
                     const Divider(height: 16),
                     ListTile(
                       horizontalTitleGap: 12,
-                      contentPadding: EdgeInsets.zero,
+                      contentPadding: .zero,
                       leading: Icon(Icons.input_rounded, color: cs.secondary),
                       title: const Text(
                         DialogStrings.channels,
@@ -77,7 +77,7 @@ class Dialogs {
                     const Divider(height: 16),
                     ListTile(
                       horizontalTitleGap: 12,
-                      contentPadding: EdgeInsets.zero,
+                      contentPadding: .zero,
                       leading: Icon(Icons.timer_outlined, color: cs.secondary),
                       title: const Text(
                         DialogStrings.cas,
@@ -96,7 +96,7 @@ class Dialogs {
                 child: ElevatedButton(
                   onPressed: () => Navigator.pop(ctx),
                   style: ElevatedButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(vertical: 16),
+                    padding: const .symmetric(vertical: 16),
                   ),
                   child: const Text(DialogStrings.gotit),
                 ),

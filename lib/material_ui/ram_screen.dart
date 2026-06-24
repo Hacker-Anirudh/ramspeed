@@ -28,7 +28,7 @@ class MainBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Padding(
-        padding: const EdgeInsets.all(24),
+        padding: const .all(24),
         child: _mainColumn(context),
       ),
     );
@@ -36,7 +36,8 @@ class MainBody extends StatelessWidget {
 
   Column _mainColumn(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: .min,
+      crossAxisAlignment: .start,
       children: [
         const SizedBox(height: 32),
         const Text(
@@ -109,7 +110,7 @@ class MainBody extends StatelessWidget {
         ),
         const SizedBox(height: 16),
         Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: .center,
           children: [
             Text(
               speed,
@@ -119,7 +120,7 @@ class MainBody extends StatelessWidget {
         ),
         const SizedBox(height: 16),
         Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: .center,
           children: [
             Text(
               latencyStr,
@@ -158,7 +159,7 @@ class RamScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Padding(
-        padding: const EdgeInsets.all(24),
+        padding: const .all(24),
         child: _mainColumn(context),
       ),
     );
@@ -166,6 +167,7 @@ class RamScreen extends StatelessWidget {
 
   Column _mainColumn(BuildContext context) {
     return Column(
+      mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Text(
@@ -246,7 +248,7 @@ class RamScreen extends StatelessWidget {
         ),
         const SizedBox(height: 16),
         Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: .center,
           children: [
             Text(
               speed,
@@ -256,7 +258,7 @@ class RamScreen extends StatelessWidget {
         ),
         const SizedBox(height: 16),
         Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: .center,
           children: [
             Text(
               latencyStr,
