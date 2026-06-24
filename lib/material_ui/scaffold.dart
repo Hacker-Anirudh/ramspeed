@@ -65,8 +65,8 @@ class _MainScaffoldState extends State<MainScaffold> {
                 label: Text('RAM'),
               ),
               NavigationRailDestination(
-                icon: Icon(Icons.info_outline_rounded),
-                label: Text('About'),
+                icon: Icon(Icons.cable_rounded),
+                label: Text('PCIe'),
               ),
             ],
           ),
