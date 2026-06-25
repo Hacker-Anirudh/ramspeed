@@ -3,6 +3,7 @@ class RamSpeedLogic {
     String mt,
     String bus,
     String channels,
+    bool isBinaryPrefix,
   ) {
     final mttemp = double.tryParse(mt);
     final bustemp = double.tryParse(bus);
@@ -44,12 +45,14 @@ class RamSpeedLogic {
     String mtController,
     String busController,
     String channelController,
-    String casController,
-  ) async {
+    String casController, {
+    required bool isBinaryPrefix,
+  }) async {
     final result = _toRAMSpeed(
       mtController,
       busController,
       channelController,
+      isBinaryPrefix,
     );
     final latencyStr = _toLatencyStr(
       casController,

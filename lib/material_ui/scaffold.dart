@@ -35,6 +35,7 @@ class _MainScaffoldState extends State<MainScaffold> {
   String speed = Strings.memeSpeed;
   double latency = 420;
   String latencyStr = '';
+  bool isBinaryPrefix = false;
 
   @override
   void dispose() {
@@ -48,6 +49,7 @@ class _MainScaffoldState extends State<MainScaffold> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      persistentFooterButtons: const [],
       appBar: mainAppBar(context),
       body: Row(
         crossAxisAlignment: .start,
@@ -88,6 +90,7 @@ class _MainScaffoldState extends State<MainScaffold> {
                         busController.text,
                         channelController.text,
                         casController.text,
+                        isBinaryPrefix: isBinaryPrefix,
                       );
                       if (spee != null) {
                         setState(() {

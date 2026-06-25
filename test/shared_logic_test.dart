@@ -9,6 +9,7 @@ void main() {
         '64',
         '2',
         '16',
+        isBinaryPrefix: false,
       );
 
       expect(latencyStr, 'Total latency: 10.00 ns');
@@ -25,6 +26,7 @@ void main() {
           '64',
           '2',
           '16',
+          isBinaryPrefix: false,
         );
 
         expect(latencyStr, '');
@@ -38,6 +40,7 @@ void main() {
         '64',
         '2',
         '16a',
+        isBinaryPrefix: false,
       );
 
       // '16a' should be parsed as 16

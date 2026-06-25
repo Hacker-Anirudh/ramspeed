@@ -32,6 +32,7 @@ class _MainScaffoldState extends State<MainScaffold> {
   String speed = Strings.memeSpeed;
   double latency = 420;
   String latencyStr = '';
+  bool isBinaryPrefix = false;
 
   @override
   void dispose() {
@@ -62,6 +63,7 @@ class _MainScaffoldState extends State<MainScaffold> {
                   busController.text,
                   channelController.text,
                   casController.text,
+                  isBinaryPrefix: isBinaryPrefix,
                 );
                 if (spee != null) {
                   setState(() {
