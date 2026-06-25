@@ -2,7 +2,7 @@ class Strings {
   static const String appName = 'RAMSpeed';
   static const String legalese =
       '(c) 2020-2026 Anirudh Menon. GNU GPL v3 license. All rights reserved.\nFor feature suggestions/bug reports, open an issue on Github.';
-  static const String appVersion = '1.3.1';
+  static const String appVersion = '1.3.2';
   static const String memeSpeed = 'Speed: 6967 YB/s';
 }
 

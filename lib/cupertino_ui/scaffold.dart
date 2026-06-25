@@ -110,7 +110,9 @@ class _MainScaffoldState extends State<MainScaffold> {
                         await Dialogs.showHintsDialog(context);
                       },
                     )
-                  : const PCIeScreen(),
+                  : PCIeScreen(
+                      isBinaryPrefix: isBinaryPrefix,
+                    ),
             ),
             Padding(
               padding: const .all(16),

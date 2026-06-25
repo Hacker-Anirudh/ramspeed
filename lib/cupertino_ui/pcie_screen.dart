@@ -3,7 +3,9 @@ import 'package:ramspeed/shared/logic.dart';
 import 'package:ramspeed/shared/strings.dart';
 
 class PCIeScreen extends StatefulWidget {
-  const PCIeScreen({super.key});
+  const PCIeScreen({required this.isBinaryPrefix, super.key});
+
+  final bool isBinaryPrefix;
 
   @override
   State<PCIeScreen> createState() => _PCIeScreenState();
@@ -98,7 +100,11 @@ class _PCIeScreenState extends State<PCIeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final speed = PCIeSpeedLogic.toSpeedStr(_selectedGen, _selectedLanes);
+    final speed = PCIeSpeedLogic.toSpeedStr(
+      _selectedGen,
+      _selectedLanes,
+      isBinaryPrefix: widget.isBinaryPrefix,
+    );
 
     return CupertinoPageScaffold(
       child: SafeArea(

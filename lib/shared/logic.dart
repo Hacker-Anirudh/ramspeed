@@ -11,31 +11,29 @@ class RamSpeedLogic {
     if (mttemp == null ||
         bustemp == null ||
         channelstemp == null ||
-        mttemp <= 0) {
+        mttemp <= 0 ||
+        bustemp <= 0 ||
+        channelstemp <= 0) {
       return null;
     }
     final tempval = (mttemp * bustemp * channelstemp) / 8;
     if (tempval < 1000) {
-      double mbVal = 0;
       if (isBinaryPrefix) {
-        mbVal = tempval * 0.953674316;
+        return 'Speed: ${(tempval * 0.953674316).toStringAsFixed(2)} MiB/s';
       }
-      final tempvalString = mbVal.toStringAsFixed(2);
-      return 'Speed: $tempvalString MB/s';
+      return 'Speed: ${tempval.toStringAsFixed(2)} MB/s';
     } else if (tempval < 1000000) {
-      var gbVal = tempval / 1000;
+      final gbVal = tempval / 1000;
       if (isBinaryPrefix) {
-        gbVal = gbVal * 0.953674316;
+        return 'Speed: ${(gbVal * 0.931322575).toStringAsFixed(2)} GiB/s';
       }
-      final rvalString = gbVal.toStringAsFixed(2);
-      return 'Speed: $rvalString GB/s';
+      return 'Speed: ${gbVal.toStringAsFixed(2)} GB/s';
     } else {
-      var tbVal = tempval / 1000000;
+      final tbVal = tempval / 1000000;
       if (isBinaryPrefix) {
-        tbVal = tbVal * 0.953674316;
+        return 'Speed: ${(tbVal * 0.909494702).toStringAsFixed(2)} TiB/s';
       }
-      final rvalString = tbVal.toStringAsFixed(2);
-      return 'Speed: $rvalString TB/s';
+      return 'Speed: ${tbVal.toStringAsFixed(2)} TB/s';
     }
   }
 
@@ -86,11 +84,18 @@ class PCIeSpeedLogic {
     7: 15.125,
   };
 
-  static String toSpeedStr(int? gen, int? lanes) {
+  static String toSpeedStr(
+    int? gen,
+    int? lanes, {
+    required bool isBinaryPrefix,
+  }) {
     final speed = _busSpeedbyGen[gen];
     if (speed == null || lanes == null) return '';
-    final totalSpeed = (speed * lanes).toStringAsFixed(2);
-    final string = '$totalSpeed GB/s';
+    final sped = speed * lanes;
+    if (isBinaryPrefix) {
+      return '${(sped * 0.953674316).toStringAsFixed(2)} GiB/s';
+    }
+    final string = '${sped.toStringAsFixed(2)} GB/s';
     return string;
   }
 }
