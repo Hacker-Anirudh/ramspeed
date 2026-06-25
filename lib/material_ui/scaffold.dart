@@ -37,6 +37,31 @@ class _MainScaffoldState extends State<MainScaffold> {
   String latencyStr = '';
   bool isBinaryPrefix = false;
 
+  static const List<Widget> isBinary = <Widget>[
+    Text('Binary'),
+    Text('Decimal'),
+  ];
+
+  Future<void> _recomputeValues() async {
+    final String lStr;
+    final String? spee;
+    (lStr, spee) = await RamSpeedLogic.onGo(
+      mtController.text,
+      busController.text,
+      channelController.text,
+      casController.text,
+      isBinaryPrefix: isBinaryPrefix,
+    );
+    if (spee != null) {
+      setState(() {
+        // doesn't matter
+        // ignore: cast_nullable_to_non_nullable
+        speed = spee as String;
+        latencyStr = lStr;
+      });
+    }
+  }
+
   @override
   void dispose() {
     casController.dispose();
@@ -49,7 +74,21 @@ class _MainScaffoldState extends State<MainScaffold> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      persistentFooterButtons: const [],
+      persistentFooterButtons: [
+        Center(
+          child: ToggleButtons(
+            borderRadius: const .all(Radius.circular(16)),
+            isSelected: [isBinaryPrefix, !isBinaryPrefix],
+            onPressed: (index) async {
+              setState(() {
+                isBinaryPrefix = index == 0;
+              });
+              await _recomputeValues();
+            },
+            children: isBinary,
+          ),
+        ),
+      ],
       appBar: mainAppBar(context),
       body: Row(
         crossAxisAlignment: .start,

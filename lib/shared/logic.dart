@@ -16,13 +16,25 @@ class RamSpeedLogic {
     }
     final tempval = (mttemp * bustemp * channelstemp) / 8;
     if (tempval < 1000) {
-      final tempvalString = tempval.toStringAsFixed(2);
+      double mbVal = 0;
+      if (isBinaryPrefix) {
+        mbVal = tempval * 0.953674316;
+      }
+      final tempvalString = mbVal.toStringAsFixed(2);
       return 'Speed: $tempvalString MB/s';
     } else if (tempval < 1000000) {
-      final rvalString = (tempval / 1000).toStringAsFixed(2);
+      var gbVal = tempval / 1000;
+      if (isBinaryPrefix) {
+        gbVal = gbVal * 0.953674316;
+      }
+      final rvalString = gbVal.toStringAsFixed(2);
       return 'Speed: $rvalString GB/s';
     } else {
-      final rvalString = (tempval / 1000000).toStringAsFixed(2);
+      var tbVal = tempval / 1000000;
+      if (isBinaryPrefix) {
+        tbVal = tbVal * 0.953674316;
+      }
+      final rvalString = tbVal.toStringAsFixed(2);
       return 'Speed: $rvalString TB/s';
     }
   }

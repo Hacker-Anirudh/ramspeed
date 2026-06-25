@@ -34,6 +34,26 @@ class _MainScaffoldState extends State<MainScaffold> {
   String latencyStr = '';
   bool isBinaryPrefix = false;
 
+  Future<void> _recomputeValues() async {
+    final String lStr;
+    final String? spee;
+    (lStr, spee) = await RamSpeedLogic.onGo(
+      mtController.text,
+      busController.text,
+      channelController.text,
+      casController.text,
+      isBinaryPrefix: isBinaryPrefix,
+    );
+    if (spee != null) {
+      setState(() {
+        // doesn't matter
+        // ignore: cast_nullable_to_non_nullable
+        speed = spee as String;
+        latencyStr = lStr;
+      });
+    }
+  }
+
   @override
   void dispose() {
     casController.dispose();
@@ -47,46 +67,71 @@ class _MainScaffoldState extends State<MainScaffold> {
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
       navigationBar: mainAppBar(context),
-      child: _selectedIndex == 0
-          ? MainBody(
-              casController: casController,
-              mtController: mtController,
-              busController: busController,
-              channelController: channelController,
-              speed: speed,
-              latencyStr: latencyStr,
-              onGo: () async {
-                final String lStr;
-                final String? spee;
-                (lStr, spee) = await RamSpeedLogic.onGo(
-                  mtController.text,
-                  busController.text,
-                  channelController.text,
-                  casController.text,
-                  isBinaryPrefix: isBinaryPrefix,
-                );
-                if (spee != null) {
+      child: SafeArea(
+        child: Column(
+          children: [
+            Expanded(
+              child: _selectedIndex == 0
+                  ? MainBody(
+                      casController: casController,
+                      mtController: mtController,
+                      busController: busController,
+                      channelController: channelController,
+                      speed: speed,
+                      latencyStr: latencyStr,
+                      onGo: () async {
+                        final String lStr;
+                        final String? spee;
+                        (lStr, spee) = await RamSpeedLogic.onGo(
+                          mtController.text,
+                          busController.text,
+                          channelController.text,
+                          casController.text,
+                          isBinaryPrefix: isBinaryPrefix,
+                        );
+                        if (spee != null) {
+                          setState(() {
+                            // Nothing seems to please the thing, if I add a
+                            // null check it complains (rightly) that there is
+                            // it's unneeded already a check so
+                            // ignore: cast_nullable_to_non_nullable
+                            speed = spee as String;
+                            latencyStr = lStr;
+                          });
+                        } else {
+                          if (!context.mounted) return;
+                          await Dialogs.showErrorDialog(
+                            context,
+                            DialogStrings.invalidInput,
+                          );
+                        }
+                      },
+                      onShowHints: () async {
+                        await Dialogs.showHintsDialog(context);
+                      },
+                    )
+                  : const PCIeScreen(),
+            ),
+            Padding(
+              padding: const .all(16),
+              child: CupertinoSlidingSegmentedControl<bool>(
+                groupValue: isBinaryPrefix,
+                children: const {
+                  true: Text('Binary'),
+                  false: Text('Decimal'),
+                },
+                onValueChanged: (value) async {
+                  if (value == null) return;
                   setState(() {
-                    // Nothing seems to please the thing, if I add a null check
-                    // it complains (rightly) that there is already a check so
-                    // it's unneeded
-                    // ignore: cast_nullable_to_non_nullable
-                    speed = spee as String;
-                    latencyStr = lStr;
+                    isBinaryPrefix = value;
                   });
-                } else {
-                  if (!context.mounted) return;
-                  await Dialogs.showErrorDialog(
-                    context,
-                    DialogStrings.invalidInput,
-                  );
-                }
-              },
-              onShowHints: () async {
-                await Dialogs.showHintsDialog(context);
-              },
-            )
-          : const PCIeScreen(),
+                  await _recomputeValues();
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 
