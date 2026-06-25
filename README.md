@@ -1,6 +1,6 @@
 # ramspeed
 
-A simple application for calculating RAM speed and latency.
+A simple application for calculating RAM speed and latency. Now with PCIe calculation as well!
 
 ## How to use
 
@@ -37,4 +37,4 @@ RAMspeed is built with a slightly unusual architecture. There is two main files 
 - material_ui: Contains the Material app's UI code.
 - shared: Contains some shared logic and strings.
 
-This permits two version of the app to be built without causing any bloat, but still permitting some code reuse.
+This permits two versions of the app to be built without causing any bloat, but still permitting some code reuse.
