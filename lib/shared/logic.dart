@@ -7,7 +7,12 @@ class RamSpeedLogic {
     final mttemp = double.tryParse(mt);
     final bustemp = double.tryParse(bus);
     final channelstemp = double.tryParse(channels);
-    if (mttemp == null || bustemp == null || channelstemp == null) return null;
+    if (mttemp == null ||
+        bustemp == null ||
+        channelstemp == null ||
+        mttemp <= 0) {
+      return null;
+    }
     final tempval = (mttemp * bustemp * channelstemp) / 8;
     if (tempval < 1000) {
       final tempvalString = tempval.toStringAsFixed(2);
