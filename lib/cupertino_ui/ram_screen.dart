@@ -47,7 +47,7 @@ class MainBody extends StatelessWidget {
           children: [
             Expanded(
               child: CupertinoTextField(
-                keyboardType: TextInputType.number,
+                keyboardType: .number,
                 controller: mtController,
                 placeholder: BodyStrings.speed,
               ),
@@ -55,7 +55,7 @@ class MainBody extends StatelessWidget {
             const SizedBox(width: 12),
             Expanded(
               child: CupertinoTextField(
-                keyboardType: TextInputType.number,
+                keyboardType: .number,
                 controller: busController,
                 placeholder: BodyStrings.busWidth,
               ),
@@ -63,7 +63,7 @@ class MainBody extends StatelessWidget {
             const SizedBox(width: 12),
             Expanded(
               child: CupertinoTextField(
-                keyboardType: TextInputType.number,
+                keyboardType: .number,
                 controller: channelController,
                 placeholder: BodyStrings.channels,
               ),
@@ -80,7 +80,7 @@ class MainBody extends StatelessWidget {
           children: [
             Expanded(
               child: CupertinoTextField(
-                keyboardType: TextInputType.number,
+                keyboardType: .number,
                 controller: casController,
                 placeholder: BodyStrings.casDecoration,
               ),

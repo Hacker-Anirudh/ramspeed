@@ -35,8 +35,8 @@ class RamScreen extends StatelessWidget {
 
   Column _mainColumn(BuildContext context) {
     return Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: .min,
+      crossAxisAlignment: .start,
       children: [
         const Text(
           BodyStrings.dataEntry,
@@ -47,7 +47,7 @@ class RamScreen extends StatelessWidget {
           children: [
             Expanded(
               child: TextField(
-                keyboardType: TextInputType.number,
+                keyboardType: .number,
                 decoration: const InputDecoration(
                   labelText: BodyStrings.speed,
                 ),
@@ -57,7 +57,7 @@ class RamScreen extends StatelessWidget {
             const SizedBox(width: 12),
             Expanded(
               child: TextField(
-                keyboardType: TextInputType.number,
+                keyboardType: .number,
                 decoration: const InputDecoration(
                   labelText: BodyStrings.busWidth,
                 ),
@@ -67,7 +67,7 @@ class RamScreen extends StatelessWidget {
             const SizedBox(width: 12),
             Expanded(
               child: TextField(
-                keyboardType: TextInputType.number,
+                keyboardType: .number,
                 decoration: const InputDecoration(
                   labelText: BodyStrings.channels,
                 ),
@@ -86,7 +86,7 @@ class RamScreen extends StatelessWidget {
           children: [
             Expanded(
               child: TextField(
-                keyboardType: TextInputType.number,
+                keyboardType: .number,
                 decoration: const InputDecoration(
                   labelText: BodyStrings.casDecoration,
                 ),

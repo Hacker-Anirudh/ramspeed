@@ -5,18 +5,41 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "ramspeed",
+            "name": "ramspeed (material)",
             "request": "launch",
+            "program": "lib/main_material.dart",
             "type": "dart"
         },
         {
-            "name": "ramspeed (profile mode)",
+            "name": "ramspeed (material) (profile mode)",
+            "program": "lib/main_material.dart",
             "request": "launch",
             "type": "dart",
             "flutterMode": "profile"
         },
         {
-            "name": "ramspeed (release mode)",
+            "name": "ramspeed (material) (release mode)",
+            "program": "lib/main_material.dart",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "ramspeed (cupertino)",
+            "request": "launch",
+            "program": "lib/main_cupertino.dart",
+            "type": "dart"
+        },
+        {
+            "name": "ramspeed (cupertino) (profile mode)",
+            "program": "lib/main_cupertino.dart",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "ramspeed (cupertino) (release mode)",
+            "program": "lib/main_cupertino.dart",
             "request": "launch",
             "type": "dart",
             "flutterMode": "release"
