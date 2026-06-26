@@ -160,9 +160,8 @@ class Dialogs {
           padding: .only(top: 8),
           child: Text(
             'Version ${Strings.appVersion}\n\n'
-            // Not worth fixing.
-            // ignore: lines_longer_than_80_chars
-            '© 2020-2026 Anirudh Menon. GNU GPL v3 license. All rights reserved.\n'
+            '© 2020-2026 Anirudh Menon. GNU GPL v3 license. '
+            'All rights reserved.\n'
             'For feature suggestions/bug reports, open an issue on GitHub.',
             style: TextStyle(fontSize: 13),
           ),

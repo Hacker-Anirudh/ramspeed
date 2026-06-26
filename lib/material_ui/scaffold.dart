@@ -1,6 +1,3 @@
-// I don't care about line length in this file, it's mostly UI code and I don't want to split it up into multiple lines
-// ignore_for_file: lines_longer_than_80_chars
-
 import 'package:flutter/material.dart';
 import 'package:ramspeed/material_ui/dialogs.dart';
 import 'package:ramspeed/material_ui/pcie_screen.dart';
@@ -53,10 +50,9 @@ class _MainScaffoldState extends State<MainScaffold> {
       isBinaryPrefix: isBinaryPrefix,
     );
     if (spee != null) {
+      final nonNullSpeed = spee;
       setState(() {
-        // doesn't matter
-        // ignore: cast_nullable_to_non_nullable
-        speed = spee as String;
+        speed = nonNullSpeed;
         latencyStr = lStr;
       });
     }
@@ -132,12 +128,9 @@ class _MainScaffoldState extends State<MainScaffold> {
                         isBinaryPrefix: isBinaryPrefix,
                       );
                       if (spee != null) {
+                        final nonNullSpeed = spee;
                         setState(() {
-                          // Nothing seems to please the thing, if I add a null check
-                          // it complains (rightly) that there is already a check so
-                          // it's unneeded
-                          // ignore: cast_nullable_to_non_nullable
-                          speed = spee as String;
+                          speed = nonNullSpeed;
                           latencyStr = lStr;
                         });
                       } else {

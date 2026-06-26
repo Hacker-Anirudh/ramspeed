@@ -93,7 +93,7 @@ class PCIeSpeedLogic {
     if (speed == null || lanes == null) return '';
     final sped = speed * lanes;
     if (isBinaryPrefix) {
-      return '${(sped * 0.953674316).toStringAsFixed(2)} GiB/s';
+      return '${(sped * 0.931322575).toStringAsFixed(2)} GiB/s';
     }
     final string = '${sped.toStringAsFixed(2)} GB/s';
     return string;

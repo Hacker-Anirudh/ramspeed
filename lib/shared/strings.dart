@@ -1,3 +1,6 @@
+// It's jjust a file full of strings, why would it need documentation?
+// ignore_for_file: public_member_api_docs
+
 class Strings {
   static const String appName = 'RAMSpeed';
   static const String legalese =

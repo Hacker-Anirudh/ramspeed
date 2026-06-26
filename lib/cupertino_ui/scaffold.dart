@@ -45,10 +45,9 @@ class _MainScaffoldState extends State<MainScaffold> {
       isBinaryPrefix: isBinaryPrefix,
     );
     if (spee != null) {
+      final nonNullSpeed = spee;
       setState(() {
-        // doesn't matter
-        // ignore: cast_nullable_to_non_nullable
-        speed = spee as String;
+        speed = nonNullSpeed;
         latencyStr = lStr;
       });
     }
@@ -90,12 +89,9 @@ class _MainScaffoldState extends State<MainScaffold> {
                           isBinaryPrefix: isBinaryPrefix,
                         );
                         if (spee != null) {
+                          final nonNullSpeed = spee;
                           setState(() {
-                            // Nothing seems to please the thing, if I add a
-                            // null check it complains (rightly) that there is
-                            // it's unneeded already a check so
-                            // ignore: cast_nullable_to_non_nullable
-                            speed = spee as String;
+                            speed = nonNullSpeed;
                             latencyStr = lStr;
                           });
                         } else {
